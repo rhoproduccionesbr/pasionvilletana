@@ -1,6 +1,6 @@
 import { db } from "../firebase/config";
 import { lvfCollection } from "../firebase/utils";
-import { Tournament } from "@/types";
+import { Tournament, MatchDay } from "@/types";
 import {
     addDoc,
     getDocs,
@@ -60,7 +60,7 @@ export const tournamentService = {
 
     // --- Helpers (Client-side mainly, but good to have here or in utils) ---
     // Recibe las fechas de IDA y genera las de VUELTA
-    generateReturnMatchDays: (idaMatchDays: Tournament['matchDays'], startOrderOffset: number): Tournament['matchDays'] => {
+    generateReturnMatchDays: (idaMatchDays: Tournament['matchDays'], startOrderOffset: number): MatchDay[] => {
         if (!idaMatchDays) return [];
 
         return idaMatchDays.map(day => {
