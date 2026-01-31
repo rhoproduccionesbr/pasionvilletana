@@ -25,7 +25,7 @@ export function MatchEditDialog({ match, open, onOpenChange, onUpdate }: MatchEd
     const [awayScore, setAwayScore] = useState(0);
     const [date, setDate] = useState("");
     const [time, setTime] = useState("");
-    const [status, setStatus] = useState<'scheduled' | 'finished'>('scheduled');
+    const [status, setStatus] = useState<Match['status']>('scheduled');
 
     useEffect(() => {
         if (match) {
