@@ -1,0 +1,15 @@
+2026/01/30-12:37:05.526 2678 Reusing MANIFEST E:\Rodrigo\Documents\Systema LVF\scraper\fb_session\Default\Local Storage\leveldb/MANIFEST-000001
+2026/01/30-12:37:05.537 2678 Recovering log #22
+2026/01/30-12:37:05.565 2678 Reusing old log E:\Rodrigo\Documents\Systema LVF\scraper\fb_session\Default\Local Storage\leveldb/000022.log 
+2026/01/30-12:46:13.827 2dd8 Level-0 table #25: started
+2026/01/30-12:46:13.888 2dd8 Level-0 table #25: 18481 bytes OK
+2026/01/30-12:46:13.960 2dd8 Delete type=0 #22
+2026/01/30-12:46:13.960 1b6c Compacting 4@0 + 1@1 files
+2026/01/30-12:46:13.987 1b6c Generated table #26@0: 27 keys, 1580 bytes
+2026/01/30-12:46:13.987 1b6c Compacted 4@0 + 1@1 files => 1580 bytes
+2026/01/30-12:46:14.008 1b6c compacted to: files[ 0 1 0 0 0 0 0 ]
+2026/01/30-12:46:14.010 1b6c Delete type=2 #14
+2026/01/30-12:46:14.010 1b6c Delete type=2 #16
+2026/01/30-12:46:14.010 1b6c Delete type=2 #20
+2026/01/30-12:46:14.010 1b6c Delete type=2 #22
+2026/01/30-12:46:14.010 1b6c Delete type=2 #25

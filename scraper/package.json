@@ -1,0 +1,14 @@
+{
+    "name": "lvf-facebook-scraper",
+    "version": "1.0.0",
+    "description": "Utility to scrape FB pages for Systema LVF",
+    "main": "scrape.js",
+    "scripts": {
+        "start": "node scrape.js"
+    },
+    "dependencies": {
+        "puppeteer": "^22.0.0",
+        "fs-extra": "^11.0.0",
+        "date-fns": "^3.0.0"
+    }
+}

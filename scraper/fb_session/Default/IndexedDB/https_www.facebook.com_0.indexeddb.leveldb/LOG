@@ -1,0 +1,12 @@
+2026/01/30-12:38:44.836 2928 Reusing MANIFEST E:\Rodrigo\Documents\Systema LVF\scraper\fb_session\Default\IndexedDB\https_www.facebook.com_0.indexeddb.leveldb/MANIFEST-000001
+2026/01/30-12:38:44.837 2928 Recovering log #11
+2026/01/30-12:38:45.358 2928 Reusing old log E:\Rodrigo\Documents\Systema LVF\scraper\fb_session\Default\IndexedDB\https_www.facebook.com_0.indexeddb.leveldb/000011.log 
+2026/01/30-12:48:46.666 af4 Level-0 table #16: started
+2026/01/30-12:48:46.991 af4 Level-0 table #16: 2055687 bytes OK
+2026/01/30-12:48:47.042 af4 Delete type=0 #11
+2026/01/30-12:49:34.674 1cd4 Compacting 1@1 + 1@2 files
+2026/01/30-12:49:34.756 1cd4 Generated table #17@1: 2245 keys, 89620 bytes
+2026/01/30-12:49:34.757 1cd4 Compacted 1@1 + 1@2 files => 89620 bytes
+2026/01/30-12:49:34.806 1cd4 compacted to: files[ 0 0 1 0 0 0 0 ]
+2026/01/30-12:49:34.807 1cd4 Delete type=2 #13
+2026/01/30-12:49:34.807 1cd4 Delete type=2 #16

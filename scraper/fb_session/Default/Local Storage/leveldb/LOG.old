@@ -1,0 +1,7 @@
+2026/01/30-12:13:06.961 24cc Reusing MANIFEST E:\Rodrigo\Documents\Systema LVF\scraper\fb_session\Default\Local Storage\leveldb/MANIFEST-000001
+2026/01/30-12:13:07.028 24cc Recovering log #19
+2026/01/30-12:13:07.030 24cc Level-0 table #22: started
+2026/01/30-12:13:07.172 24cc Level-0 table #22: 24994 bytes OK
+2026/01/30-12:13:07.173 24cc Recovering log #22
+2026/01/30-12:13:07.176 24cc Reusing old log E:\Rodrigo\Documents\Systema LVF\scraper\fb_session\Default\Local Storage\leveldb/000022.log 
+2026/01/30-12:13:07.267 24cc Delete type=0 #19
