@@ -44,7 +44,11 @@ export function TournamentRulesForm({ tournament, onUpdate }: { tournament: Tour
             await tournamentService.update(tournament.id, {
                 categories: data.categories,
                 config: {
-                    ...tournament.config,
+                    matchDuration: tournament.config?.matchDuration || 90,
+                    maxPlayersPerTeam: tournament.config?.maxPlayersPerTeam || 25,
+                    pointsForWin: tournament.config?.pointsForWin || 3,
+                    pointsForDraw: tournament.config?.pointsForDraw || 1,
+                    pointsForLoss: tournament.config?.pointsForLoss || 0,
                     format: data.format,
                     groupsConfig: {
                         series: seriesArray

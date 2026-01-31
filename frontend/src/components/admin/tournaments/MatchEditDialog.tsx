@@ -42,7 +42,7 @@ export function MatchEditDialog({ match, open, onOpenChange, onUpdate }: MatchEd
     }, [match]);
 
     const handleSave = async () => {
-        if (!match) return;
+        if (!match || !match.id) return;
         setIsLoading(true);
         try {
             // Reconstruct Date
