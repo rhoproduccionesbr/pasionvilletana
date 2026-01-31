@@ -83,9 +83,9 @@ export function FixtureGenerator({ tournament, onUpdate }: { tournament: Tournam
 
     return (
         <div className="space-y-6">
-            <div className="flex justify-between items-center bg-muted/20 p-4 rounded-lg border">
+            <div className="admin-info-bar">
                 <div>
-                    <h3 className="text-lg font-medium">Gestión de Fixture</h3>
+                    <h3 className="text-lg font-semibold">Gestión de Fixture</h3>
                     <p className="text-sm text-muted-foreground">Carga manual de Ida - Automática para Vuelta</p>
                 </div>
                 <Button onClick={handleGenerateReturn} variant="outline" className="gap-2 text-primary hover:text-primary hover:bg-primary/10">
@@ -116,7 +116,7 @@ export function FixtureGenerator({ tournament, onUpdate }: { tournament: Tournam
 
                             <div className="space-y-4">
                                 {serieMatchDays.length === 0 && (
-                                    <div className="text-center py-10 text-muted-foreground border-2 border-dashed rounded-xl">
+                                    <div className="admin-empty-state">
                                         No hay fechas creadas para la Serie {serieName}
                                     </div>
                                 )}
@@ -219,7 +219,7 @@ function MatchDayEditor({ matchDay, availableTeams, allMatchDays, onUpdate, onDe
     });
 
     return (
-        <Card className="border-l-4 border-l-primary/50 relative overflow-hidden">
+        <Card className="admin-card-accent relative overflow-hidden">
             <CardHeader className="py-3 px-4 bg-muted/10 flex flex-row items-center justify-between">
                 <div className="flex items-center gap-3">
                     <Badge variant={matchDay.isReturnRound ? "secondary" : "default"}>
@@ -255,7 +255,7 @@ function MatchDayEditor({ matchDay, availableTeams, allMatchDays, onUpdate, onDe
             </CardHeader>
             <CardContent className="p-4 space-y-2">
                 {matchDay.matches.length === 0 && (
-                    <div className="text-center text-sm text-muted-foreground py-2 italic cursor-pointer hover:text-primary" onClick={addMatch}>
+                    <div className="admin-empty-state py-4 cursor-pointer hover:border-primary" onClick={addMatch}>
                         + Click para agregar primer partido
                     </div>
                 )}
@@ -283,7 +283,7 @@ function MatchDayEditor({ matchDay, availableTeams, allMatchDays, onUpdate, onDe
                     }
 
                     return (
-                        <div key={match.id} className="flex flex-col gap-1 p-2 rounded bg-background border shadow-sm relative">
+                        <div key={match.id} className="admin-match-row">
                             <div className="flex flex-col md:flex-row items-center gap-2">
                                 {/* LOCAL */}
                                 <div className="flex-1 w-full">

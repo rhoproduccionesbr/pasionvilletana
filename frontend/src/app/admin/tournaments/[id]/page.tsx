@@ -91,7 +91,7 @@ export default function TournamentDetailsPage() {
                 </TabsContent>
 
                 <TabsContent value="participants" className="space-y-4">
-                    <Card>
+                    <Card className="admin-card">
                         <CardHeader>
                             <CardTitle>Clubes Participantes</CardTitle>
                         </CardHeader>
@@ -105,7 +105,7 @@ export default function TournamentDetailsPage() {
                 </TabsContent>
 
                 <TabsContent value="rules" className="space-y-4">
-                    <Card>
+                    <Card className="admin-card">
                         <CardHeader>
                             <CardTitle>Configuración del Torneo</CardTitle>
                         </CardHeader>
@@ -119,18 +119,18 @@ export default function TournamentDetailsPage() {
                 </TabsContent>
 
                 <TabsContent value="fixture" className="space-y-4">
-                    <Card>
+                    <Card className="admin-card">
                         <CardHeader>
                             <CardTitle>Fixture y Partidos</CardTitle>
                         </CardHeader>
-                        <CardContent>
+                        <CardContent className="space-y-6">
                             <FixtureGenerator
                                 tournament={tournament}
                                 onUpdate={handleDataUpdate}
                             />
 
-                            <div className="mt-8 pt-8 border-t">
-                                <h3 className="text-lg font-semibold mb-4">Calendario de Partidos</h3>
+                            <div className="pt-6 border-t">
+                                <h3 className="admin-section-title mb-4">Calendario de Partidos</h3>
                                 <MatchList tournament={tournament} key={lastUpdated} />
                             </div>
                         </CardContent>

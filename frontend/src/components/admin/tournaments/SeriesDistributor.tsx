@@ -102,16 +102,16 @@ export function SeriesDistributor({ tournament, onUpdate }: SeriesDistributorPro
 
     return (
         <div className="space-y-6">
-            <div className="flex items-center justify-between">
+            <div className="admin-section-header">
                 <div className="space-y-1">
-                    <h2 className="text-xl font-bold">Distribución de Series</h2>
-                    <p className="text-sm text-muted-foreground">
+                    <h2 className="admin-section-title">Distribución de Series</h2>
+                    <p className="admin-section-subtitle">
                         {teams.length} equipos clasificados. {getUnassignedTeams().length} pendientes.
                     </p>
                 </div>
                 <Button onClick={handleSave} disabled={loading} className="gap-2">
                     <Save className="h-4 w-4" />
-                    {loading ? "Guardando..." : "Guardar Distribución"}
+                    {loading ? "Guardando..." : "Guardar"}
                 </Button>
             </div>
 
@@ -126,7 +126,7 @@ export function SeriesDistributor({ tournament, onUpdate }: SeriesDistributorPro
                     const isTheOddOne = count === 7;
 
                     return (
-                        <Card key={serie.name} className={`border-l-4 ${isTheOddOne ? 'border-l-yellow-500 bg-yellow-500/5' : 'border-l-blue-500 bg-card/50'}`}>
+                        <Card key={serie.name} className={`admin-card-accent ${isTheOddOne ? 'ring-2 ring-yellow-500/30' : ''}`}>
                             <CardHeader className="flex flex-row items-center justify-between pb-2">
                                 <CardTitle className="text-lg">Serie {serie.name}</CardTitle>
                                 <Badge variant={count > maxTeams ? "destructive" : (isFull ? "default" : "secondary")}>
@@ -136,17 +136,17 @@ export function SeriesDistributor({ tournament, onUpdate }: SeriesDistributorPro
                             <CardContent className="space-y-3">
                                 <div className="space-y-2 min-h-[200px]">
                                     {serie.teamIds.length === 0 && (
-                                        <div className="h-full flex flex-col items-center justify-center text-muted-foreground text-sm py-8 border-2 border-dashed rounded-lg opacity-50">
+                                        <div className="admin-empty-state py-8">
                                             <span>Serie Vacía</span>
                                         </div>
                                     )}
                                     {serie.teamIds.map(teamId => (
-                                        <div key={teamId} className="flex items-center justify-between p-2 rounded-md bg-muted/20 border group">
+                                        <div key={teamId} className="admin-list-item group">
                                             <span className="font-medium text-sm">{getTeamName(teamId)}</span>
                                             <Button
                                                 variant="ghost"
                                                 size="icon"
-                                                className="h-6 w-6 text-muted-foreground hover:text-red-500 opacity-0 group-hover:opacity-100 transition-opacity"
+                                                className="h-6 w-6 text-muted-foreground hover:text-destructive opacity-0 group-hover:opacity-100 transition-opacity"
                                                 onClick={() => removeFromSerie(serie.name, teamId)}
                                             >
                                                 <X className="h-3 w-3" />
@@ -167,10 +167,10 @@ export function SeriesDistributor({ tournament, onUpdate }: SeriesDistributorPro
             </div>
 
             {getUnassignedTeams().length > 0 && (
-                <div className="rounded-lg bg-yellow-500/10 border border-yellow-500/20 p-4 flex items-center gap-3">
-                    <AlertCircle className="h-5 w-5 text-yellow-500" />
+                <div className="admin-warning">
+                    <AlertCircle className="h-5 w-5 text-yellow-600 shrink-0" />
                     <div>
-                        <p className="text-sm font-medium text-yellow-500">Hay equipos sin asignar</p>
+                        <p className="text-sm font-medium text-yellow-700">Hay equipos sin asignar</p>
                         <p className="text-xs text-muted-foreground">Asegúrate de distribuir los {getUnassignedTeams().length} equipos restantes.</p>
                     </div>
                 </div>

@@ -79,3 +79,57 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* ========================================
+   ADMIN DESIGN SYSTEM - UNIFIED STYLES
+   ======================================== */
+
+@layer components {
+  /* Standard Admin Card */
+  .admin-card {
+    @apply bg-card border rounded-xl shadow-sm;
+  }
+
+  /* Card with accent border */
+  .admin-card-accent {
+    @apply admin-card border-l-4 border-l-primary/60;
+  }
+
+  /* Section Header */
+  .admin-section-header {
+    @apply flex items-center justify-between pb-4 mb-4 border-b;
+  }
+
+  .admin-section-title {
+    @apply text-xl font-bold tracking-tight;
+  }
+
+  .admin-section-subtitle {
+    @apply text-sm text-muted-foreground;
+  }
+
+  /* Info Bar */
+  .admin-info-bar {
+    @apply flex items-center justify-between p-4 rounded-lg bg-muted/30 border;
+  }
+
+  /* Empty State */
+  .admin-empty-state {
+    @apply text-center py-10 text-muted-foreground border-2 border-dashed rounded-xl bg-muted/10;
+  }
+
+  /* List Item */
+  .admin-list-item {
+    @apply flex items-center justify-between p-3 rounded-lg bg-muted/10 border transition-colors hover:bg-muted/20;
+  }
+
+  /* Match Row */
+  .admin-match-row {
+    @apply flex flex-col md:flex-row items-center gap-3 p-3 rounded-lg bg-background border shadow-sm;
+  }
+
+  /* Warning Banner */
+  .admin-warning {
+    @apply rounded-lg bg-yellow-500/10 border border-yellow-500/20 p-4 flex items-center gap-3;
+  }
+}
