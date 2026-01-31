@@ -1,5 +1,6 @@
 import { db } from "../firebase/config";
 import { lvfCollection } from "../firebase/utils";
+import { sanitizeForFirestore } from "../firebase/sanitize";
 import { Tournament, MatchDay } from "@/types";
 import {
     addDoc,
@@ -16,11 +17,12 @@ const COLLECTION_NAME = "tournaments"; // Will be prefixed to 'lvf_tournaments'
 export const tournamentService = {
     create: async (tournament: Omit<Tournament, "id">) => {
         const colRef = lvfCollection(COLLECTION_NAME);
-        const docRef = await addDoc(colRef, {
+        const sanitized = sanitizeForFirestore({
             ...tournament,
             createdAt: new Date(),
             status: tournament.status || 'planned'
         });
+        const docRef = await addDoc(colRef, sanitized);
         return docRef.id;
     },
 
@@ -35,12 +37,13 @@ export const tournamentService = {
     update: async (id: string, data: Partial<Tournament>) => {
         const colRef = lvfCollection(COLLECTION_NAME);
         const docRef = doc(colRef, id);
-        await updateDoc(docRef, { ...data });
+        const sanitized = sanitizeForFirestore(data);
+        await updateDoc(docRef, sanitized);
     },
 
     delete: async (id: string) => {
         const colRef = lvfCollection(COLLECTION_NAME);
-        const docRef = doc(colRef, id); // Ensure deleteDoc is imported
+        const docRef = doc(colRef, id);
         await deleteDoc(docRef);
     },
 
@@ -49,13 +52,15 @@ export const tournamentService = {
     updateSeries: async (id: string, seriesData: Tournament['seriesData']) => {
         const colRef = lvfCollection(COLLECTION_NAME);
         const docRef = doc(colRef, id);
-        await updateDoc(docRef, { seriesData });
+        const sanitized = sanitizeForFirestore({ seriesData });
+        await updateDoc(docRef, sanitized);
     },
 
     updateMatchDays: async (id: string, matchDays: Tournament['matchDays']) => {
         const colRef = lvfCollection(COLLECTION_NAME);
         const docRef = doc(colRef, id);
-        await updateDoc(docRef, { matchDays });
+        const sanitized = sanitizeForFirestore({ matchDays });
+        await updateDoc(docRef, sanitized);
     },
 
     // --- Helpers (Client-side mainly, but good to have here or in utils) ---
@@ -72,20 +77,19 @@ export const tournamentService = {
                     home: m.teams.away, // Swap
                     away: m.teams.home
                 },
-                score: undefined, // Reset
+                // Use null instead of undefined for fields we want to "reset"
+                // Or simply omit them - the sanitizer will handle undefined
                 status: 'scheduled' as const,
                 events: [],
-                date: undefined // To be set manually or via logic
             }));
 
             return {
                 ...day,
                 id: crypto.randomUUID(),
                 name: `Revancha - ${day.name}`,
-                order: day.order + startOrderOffset, // e.g. Fecha 1 is order 1. Vuelta starts at order 10?
+                order: day.order + startOrderOffset,
                 isReturnRound: true,
                 matches: newMatches,
-                // freeTeamId se mantiene igual (si A queda libre en la ida, queda libre en la vuelta)
             };
         });
     }

@@ -1,5 +1,6 @@
 import { db } from "../firebase/config";
 import { lvfCollection } from "../firebase/utils";
+import { sanitizeForFirestore } from "../firebase/sanitize";
 import { Team } from "@/types";
 import {
     addDoc,
@@ -19,12 +20,13 @@ export const teamService = {
      */
     create: async (team: Omit<Team, "id">) => {
         const colRef = lvfCollection(COLLECTION_NAME);
-        const docRef = await addDoc(colRef, {
+        const sanitized = sanitizeForFirestore({
             ...team,
             createdAt: new Date(),
             updatedAt: new Date(),
             status: team.status || 'active'
         });
+        const docRef = await addDoc(colRef, sanitized);
         return docRef.id;
     },
 
@@ -49,14 +51,12 @@ export const teamService = {
 
     update: async (id: string, data: Partial<Team>) => {
         const colRef = lvfCollection(COLLECTION_NAME);
-        const docRef = doc(colRef, id); // Note: doc() needs firestore instance? No, just CollectionReference or Path? NO.
-        // Actually doc() takes (Firestore, path) OR (CollectionReference, path). 
-        // lvfCollection returns CollectionReference.
-        // But doc(colRef, id) is valid in Modular SDK. 
-        await updateDoc(docRef, {
+        const docRef = doc(colRef, id);
+        const sanitized = sanitizeForFirestore({
             ...data,
             updatedAt: new Date()
         });
+        await updateDoc(docRef, sanitized);
     },
 
     delete: async (id: string) => {

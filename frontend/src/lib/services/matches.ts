@@ -1,5 +1,6 @@
 import { db } from "../firebase/config";
 import { lvfCollection } from "../firebase/utils";
+import { sanitizeForFirestore } from "../firebase/sanitize";
 import { Match, MatchTeamSnapshot, Tournament } from "@/types";
 import {
     addDoc,
@@ -94,8 +95,9 @@ export const matchService = {
 
                     match.date = nextSunday.toISOString();
 
+                    const sanitized = sanitizeForFirestore(match);
                     const newDocRef = doc(colRef);
-                    batch.set(newDocRef, match);
+                    batch.set(newDocRef, sanitized);
                 });
             }
 
@@ -125,6 +127,7 @@ export const matchService = {
     update: async (id: string, data: Partial<Match>) => {
         const colRef = lvfCollection(COLLECTION_NAME);
         const docRef = doc(colRef, id);
-        await updateDoc(docRef, data);
+        const sanitized = sanitizeForFirestore(data);
+        await updateDoc(docRef, sanitized);
     }
 };
